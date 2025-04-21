@@ -12,26 +12,23 @@
 
 #include "push_swap.h"
 
-t_list *ft_lstpop_back(t_list **lst)
+t_list	*ft_lstpop_back(t_list **lst)
 {
-    t_list *prev;
-    t_list *last;
+	t_list	*prev;
+	t_list	*last;
 
-    if (!lst || !*lst)
-        return (NULL);
-
-    if (!(*lst)->next)
-    {
-        last = *lst;
-        *lst = NULL;
-        return (last);
-    }
-
-    prev = *lst;
-    while (prev->next->next)
-        prev = prev->next;
-
-    last = prev->next;
-    prev->next = NULL;
-    return (last);
+	if (!lst || !*lst)
+		return (NULL);
+	if (!(*lst)->next)
+	{
+		last = *lst;
+		*lst = NULL;
+		return (last);
+	}
+	prev = *lst;
+	while (prev->next->next)
+		prev = prev->next;
+	last = prev->next;
+	prev->next = NULL;
+	return (last);
 }

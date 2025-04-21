@@ -6,7 +6,7 @@
 #    By: mal-ketb <mal-ketb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/18 16:28:59 by mal-ketb          #+#    #+#              #
-#    Updated: 2025/04/19 13:26:37 by mal-ketb         ###   ########.fr        #
+#    Updated: 2025/04/21 12:18:49 by mal-ketb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c ft_atoi.c ft_lstadd_back.c ft_lstadd_front.c ft_lstdel.c \
 	   ft_lstmap.c ft_lstnew.c ft_lstpop_back.c parsing.c\
 	   sorting.c sortingv2.c stack_creation.c ft_lstlast.c operations.c operations2.c operations3.c \
-	   compress.c
+	   compress.c ft_split.c ft_substr.c sort_num.c token_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

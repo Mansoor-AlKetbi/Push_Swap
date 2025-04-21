@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   sort_num.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mal-ketb <mal-ketb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 16:28:30 by mal-ketb          #+#    #+#             */
-/*   Updated: 2025/04/21 07:47:55 by mal-ketb         ###   ########.fr       */
+/*   Created: 2025/04/21 08:03:44 by mal-ketb          #+#    #+#             */
+/*   Updated: 2025/04/21 08:10:08 by mal-ketb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+void	sort_4_num(t_stack *a, t_stack *b)
 {
-	t_list	*new_list;
-	t_list	*new_node;
-
-	new_list = NULL;
-	while (lst)
+	if (a->size == 4)
 	{
-		new_node = ft_lstnew(f(lst->content));
-		if (!new_node)
-		{
-			ft_lstdel(&new_list, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&new_list, new_node);
-		lst = lst->next;
+		push_min_to_b(a, b);
+		sort_3_num(a, b);
+		op_pa(a, b);
 	}
-	return (new_list);
+}
+
+void	sort_5_num(t_stack *a, t_stack *b)
+{
+	if (a->size == 5)
+	{
+		push_min_to_b(a, b);
+		push_min_to_b(a, b);
+		sort_3_num(a, b);
+		op_pa(a, b);
+		op_pa(a, b);
+	}
 }

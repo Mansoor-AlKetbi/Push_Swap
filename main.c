@@ -6,53 +6,64 @@
 /*   By: mal-ketb <mal-ketb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:28:52 by mal-ketb          #+#    #+#             */
-/*   Updated: 2025/04/19 13:24:34 by mal-ketb         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:31:54 by mal-ketb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* main.c */
 
 #include "push_swap.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-
-int main(int argc, char **argv)
+void	free_split(char **arr)
 {
-    t_stack a;
-    t_stack b;
+	int	i;
 
-    a.top  = NULL;
-    a.size = 0;
-    b.top  = NULL;
-    b.size = 0;
-
-    if (argc < 2)
-        return (0);
-
-    if (!parse_input(argc, argv, &a))
-    {
-        write(2, "Error\n", 6);
-        return (1);
-    }
-    compress_stack(&a);
-    sort_stack(&a, &b);
-    ft_lstdel(&a.top, free);
-    return (0);
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }
 
-
-void sort_stack(t_stack *a, t_stack *b)
+int	main(int argc, char **argv)
 {
-    if (a->size <= 1)
-        return;
-    if (a->size == 2)
-        sort_2_num(a, b);
-    else if (a->size == 3)
-        sort_3_num(a, b);
-    else if (a->size == 4)
-        sort_4_num(a, b);
-    else if (a->size == 5)
-        sort_5_num(a, b);
-    else
-        radix_sort(a, b);
+	t_stack	a;
+	t_stack	b;
+	char	**tokens;
+	int		must_free;
+	int		tc;
+
+	if (argc < 2)
+		return (0);
+	must_free = build_tokens(argc, argv, &tokens, &tc);
+	if (!parse_input(tc, tokens, &a))
+	{
+		write(2, "Error\n", 6);
+		if (must_free)
+			free_split(tokens);
+		return (1);
+	}
+	if (must_free)
+		free_split(tokens);
+	compress_stack(&a);
+	sort_stack(&a, &b);
+	ft_lstdel(&a.top, free);
+	return (0);
+}
+
+void	sort_stack(t_stack *a, t_stack *b)
+{
+	if (a->size <= 1)
+		return ;
+	if (a->size == 2)
+		sort_2_num(a, b);
+	else if (a->size == 3)
+		sort_3_num(a, b);
+	else if (a->size == 4)
+		sort_4_num(a, b);
+	else if (a->size == 5)
+		sort_5_num(a, b);
+	else
+		radix_sort(a, b);
 }

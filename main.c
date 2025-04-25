@@ -6,7 +6,7 @@
 /*   By: mal-ketb <mal-ketb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:28:52 by mal-ketb          #+#    #+#             */
-/*   Updated: 2025/04/21 12:31:54 by mal-ketb         ###   ########.fr       */
+/*   Updated: 2025/04/25 16:20:56 by mal-ketb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ void	free_split(char **arr)
 	free(arr);
 }
 
+static void	make_it_null(t_stack *a, t_stack *b)
+{
+	a->top = NULL;
+	a->size = 0;
+	b->top = NULL;
+	b->size = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	a;
@@ -34,6 +42,7 @@ int	main(int argc, char **argv)
 	int		must_free;
 	int		tc;
 
+	make_it_null(&a, &b);
 	if (argc < 2)
 		return (0);
 	must_free = build_tokens(argc, argv, &tokens, &tc);
